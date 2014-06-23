@@ -35,10 +35,10 @@
 *   아마존 화재 운영 체제
 *   안 드 로이드
 *   블랙베리 10
+*   Firefox 운영 체제
 *   iOS
 *   Windows Phone 7과 8 *
 *   윈도우 8 *
-*   Firefox 운영 체제
 
 * *가이 플랫폼을 지원 하지 않는 `FileReader.readAsArrayBuffer` 이나 `FileWriter.write(blob)` .*
 

@@ -17,25 +17,25 @@
     under the License.
 -->
 
-# 插件开发人员须知
+# 外掛程式開發人員須知
 
-这些笔记主要针对 Android 和 iOS 开发者想要使用的文件系统使用的文件插件编写插件哪个接口。
+這些筆記主要針對 Android 和 iOS 開發者想要使用的檔案系統使用的檔外掛程式編寫外掛程式哪個介面。
 
-## 工作与科尔多瓦文件系统 Url
+## 工作與科爾多瓦檔案系統 Url
 
-1.0.0 版以来，这个插件用了 Url 与 `cdvfile` 在桥梁，为所有的通信计划，而不是暴露 JavaScript 原始设备的文件系统路径。
+1.0.0 版以來，這個外掛程式用了 Url 與 `cdvfile` 在橋樑，為所有的通信計畫，而不是暴露 JavaScript 原始設備的檔案系統路徑。
 
-在 JavaScript 方面，这意味着 FileEntry 和 DirectoryEntry 的对象具有一个完整路径属性是相对于 HTML 文件系统的根目录。 如果你的插件的 JavaScript API 接受 FileEntry 或 DirectoryEntry 的对象，则应调用 `.toURL()` 对该对象之前将它在桥上传递给本机代码。
+在 JavaScript 方面，這意味著 FileEntry 和 DirectoryEntry 的物件具有一個完整路徑屬性是相對於 HTML 檔案系統的根目錄。 如果你的外掛程式的 JavaScript API 接受 FileEntry 或 DirectoryEntry 的物件，則應調用 `.toURL()` 對該物件之前將它在橋上傳遞給本機代碼。
 
-### 转换 cdvfile: / / fileystem 的路径的 Url
+### 轉換 cdvfile: / / fileystem 的路徑的 Url
 
-需要写入到文件系统的插件可能会想要将收到的文件系统的 URL 转换为实际的文件系统位置。有多种方法做这个，根据本机平台。
+需要寫入到檔案系統的外掛程式可能會想要將收到的檔案系統的 URL 轉換為實際的檔案系統位置。有多種方法做這個，根據本機平臺。
 
-它是重要的是要记住，不是所有 `cdvfile://` 的 Url 均可映射到设备上的实际文件。 某些 Url 可以引用在设备上不是由文件，或甚至可以引用远程资源的资产。 由于这些可能性，插件应始终测试是否回试图将 Url 转换为路径时，他们得到有意义的结果。
+它是重要的是要記住，不是所有 `cdvfile://` 的 Url 均可映射到設備上的實際檔。 某些 Url 可以引用在設備上不是由檔，或甚至可以引用遠端資源的資產。 由於這些可能性，外掛程式應始終測試是否回試圖將 Url 轉換成路徑時，他們得到有意義的結果。
 
-#### Android 系统
+#### Android 系統
 
-在 android 系统，最简单的方法来转换 `cdvfile://` 文件系统路径的 URL 是使用 `org.apache.cordova.CordovaResourceApi` 。 `CordovaResourceApi`有几种方法，可处理 `cdvfile://` 的 Url：
+在 android 系統，最簡單的方法來轉換 `cdvfile://` 檔案系統路徑的 URL 是使用 `org.apache.cordova.CordovaResourceApi` 。 `CordovaResourceApi`有幾種方法，可處理 `cdvfile://` 的 Url：
 
     // webView is a member of the Plugin class
     CordovaResourceApi resourceApi = webView.getResourceApi();
@@ -45,7 +45,7 @@
     Uri fileURL = resourceApi.remapUri(Uri.parse(cdvfileURL));
     
 
-它也是可以直接使用文件插件：
+它也是可以直接使用檔外掛程式：
 
     import org.apache.cordova.file.FileUtils;
     import org.apache.cordova.file.FileSystem;
@@ -62,7 +62,7 @@
     }
     
 
-要转换的路径从 `cdvfile://` 的 URL：
+要轉換的路徑從 `cdvfile://` 的 URL：
 
     import org.apache.cordova.file.LocalFilesystemURL;
     
@@ -73,7 +73,7 @@
     String cdvfileURL = url.toString();
     
 
-如果你的插件创建一个文件，并且您想要为它返回一个 FileEntry 对象，使用该文件插件：
+如果你的外掛程式創建一個檔，並且您想要為它返回一個 FileEntry 物件，使用該檔外掛程式：
 
     // Return a JSON structure suitable for returning to JavaScript,
     // or null if this file is not representable as a cdvfile URL.
@@ -82,7 +82,7 @@
 
 #### iOS
 
-科尔多瓦在 iOS 上的不使用相同 `CordovaResourceApi` 作为 android 系统的概念。在 iOS，应使用文件插件的 Url 和文件系统路径之间进行转换。
+科爾多瓦在 iOS 上的不使用相同 `CordovaResourceApi` 作為 android 系統的概念。在 iOS，應使用檔外掛程式的 Url 和檔案系統路徑之間進行轉換。
 
     // Get a CDVFilesystem URL object from a URL string
     CDVFilesystemURL* url = [CDVFilesystemURL fileSystemURLWithString:cdvfileURL];
@@ -97,7 +97,7 @@
     NSString* cdvfileURL = [url absoluteString];
     
 
-如果你的插件创建一个文件，并且您想要为它返回一个 FileEntry 对象，使用该文件插件：
+如果你的外掛程式創建一個檔，並且您想要為它返回一個 FileEntry 物件，使用該檔外掛程式：
 
     // Get a CDVFilesystem URL object for a device path, or
     // nil if it cannot be represented as a cdvfile URL.
@@ -108,12 +108,12 @@
 
 #### JavaScript
 
-在 JavaScript 中，得到 `cdvfile://` URL 从 FileEntry 或 DirectoryEntry 的对象，只需调用 `.toURL()` 对它：
+在 JavaScript 中，得到 `cdvfile://` URL 從 FileEntry 或 DirectoryEntry 的物件，只需調用 `.toURL()` 對它：
 
     var cdvfileURL = entry.toURL();
     
 
-在插件响应处理程序，将从返回的 FileEntry 结构转换为实际的输入对象，您的处理程序代码应该导入的文件插件并创建一个新的对象：
+在外掛程式回應處理常式，將從返回的 FileEntry 結構轉換為實際的輸入物件，您的處理常式代碼應該導入的檔外掛程式並創建一個新的物件：
 
     // create appropriate Entry object
     var entry;

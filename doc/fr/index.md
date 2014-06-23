@@ -35,10 +35,10 @@ Ce plugin fournit les [API de système de fichiers de HTML5][1]. Pour son utilis
 *   Amazon Fire OS
 *   Android
 *   BlackBerry 10
+*   Firefox OS
 *   iOS
 *   Windows Phone 7 et 8 *
 *   Windows 8 *
-*   Firefox OS
 
 * *Ces plates-formes ne supportent pas `FileReader.readAsArrayBuffer` ni `FileWriter.write(blob)` .*
 

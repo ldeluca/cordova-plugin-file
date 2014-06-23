@@ -35,10 +35,10 @@ Plugin daje [HTML5 API systemu plików][1]. Za zwyczaj odnoszą się do skały H
 *   Amazon ogień OS
 *   Android
 *   Jeżyna 10
+*   Firefox OS
 *   iOS
 *   Windows Phone 7 i 8 *
 *   Windows 8 *
-*   Firefox OS
 
 * *Nie obsługują te platformy `FileReader.readAsArrayBuffer` , ani `FileWriter.write(blob)` .*
 

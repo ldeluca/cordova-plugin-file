@@ -19,144 +19,144 @@
 
 # org.apache.cordova.file
 
-这个插件提供了[HTML5 文件系统 API][1]。 用法，请参阅 HTML5 岩石[文件系统条][2]关于这个问题。 其他存储选项的概述，请参阅科尔多瓦的[存储指南][3].
+這個外掛程式提供了[HTML5 檔案系統 API][1]。 用法，請參閱 HTML5 岩石[檔案系統條][2]關於這個問題。 其他存儲選項的概述，請參閱科爾多瓦的[存儲指南][3].
 
  [1]: http://dev.w3.org/2009/dap/file-system/pub/FileSystem/
  [2]: http://www.html5rocks.com/en/tutorials/file/filesystem/
  [3]: http://cordova.apache.org/docs/en/edge/cordova_storage_storage.md.html
 
-## 安装
+## 安裝
 
     cordova plugin add org.apache.cordova.file
     
 
-## 支持的平台
+## 支援的平臺
 
-*   亚马逊火 OS
-*   Android 系统
+*   亞馬遜火 OS
+*   Android 系統
 *   黑莓 10
+*   火狐瀏覽器的作業系統
 *   iOS
 *   Windows Phone 7 和 8 *
 *   Windows 8 *
-*   火狐浏览器操作系统
 
-**这些平台不支持 `FileReader.readAsArrayBuffer` ，也不 `FileWriter.write(blob)` .*
+**這些平臺不支援 `FileReader.readAsArrayBuffer` ，也不 `FileWriter.write(blob)` .*
 
-## 存储文件的位置
+## 存儲檔的位置
 
-自 v1.2.0，提供重要的文件系统目录的 Url。 每个 URL 是在窗体*file:///path/to/spot/*，和可以转换为 `DirectoryEntry` 使用`window.resolveLocalFileSystemURL()`.
+自 v1.2.0，提供重要的檔案系統目錄的 Url。 每個 URL 是在表單*file:///path/to/spot/*，和可以轉換為 `DirectoryEntry` 使用`window.resolveLocalFileSystemURL()`.
 
-`cordova.file.applicationDirectory`-只读目录应用程序的安装位置。(*iOS* *Android*)
+`cordova.file.applicationDirectory`-唯讀目錄應用程式的安裝位置。(*iOS* *Android*)
 
-`cordova.file.applicationStorageDirectory`-应用程序的私有可写存储的根。(*iOS* *Android*)
+`cordova.file.applicationStorageDirectory`-應用程式的私有可寫存儲的根。(*iOS* *Android*)
 
-`cordova.file.dataDirectory`-在何处放置应用程序特定的数据文件。(*iOS* *Android*)
+`cordova.file.dataDirectory`-在何處放置應用程式特定的資料檔案。(*iOS* *Android*)
 
-`cordova.file.cacheDirectory`-缓存应该生存重新启动应用程序的文件。应用程序不应依赖 OS，以删除文件在这里。(*iOS* *Android*)
+`cordova.file.cacheDirectory`-緩存應該生存重新開機應用程式的檔。應用程式不應依賴 OS，以刪除檔在這裡。(*iOS* *Android*)
 
-`cordova.file.externalApplicationStorageDirectory`-应用程序外部存储上的空间。(*iOS* *Android*)
+`cordova.file.externalApplicationStorageDirectory`-應用程式外部存儲上的空間。(*iOS* *Android*)
 
-`cordova.file.externalDataDirectory`-要把外部存储的特定于应用程序数据文件的位置。(*Android*)
+`cordova.file.externalDataDirectory`-要把外部存儲的特定于應用程式資料檔案的位置。(*Android*)
 
-`cordova.file.externalCacheDirectory`外部存储的应用程序缓存。(*Android*)
+`cordova.file.externalCacheDirectory`外部存儲的應用程式緩存。(*Android*)
 
-`cordova.file.externalRootDirectory`-外部存储 （SD 卡） 根。(*Android*)
+`cordova.file.externalRootDirectory`-外部存儲 （SD 卡） 根。(*Android*)
 
-`cordova.file.tempDirectory`-将 OS 可以清除时的 temp 目录。(*iOS*)
+`cordova.file.tempDirectory`-將 OS 可以清除時的 temp 目錄。(*iOS*)
 
-`cordova.file.syncedDataDirectory`-持有应同步 （例如到 iCloud) 的应用程序特定的文件。(*iOS*)
+`cordova.file.syncedDataDirectory`-持有應同步 （例如到 iCloud) 的應用程式特定的檔。(*iOS*)
 
-`cordova.file.documentsDirectory`-文件专用的应用程序，但这是对其他 applciations （例如 Office 文件） 有意义。(*iOS*)
+`cordova.file.documentsDirectory`-檔專用的應用程式，但這是對其他 applciations （例如 Office 檔） 有意義。(*iOS*)
 
 ## Android 的怪癖
 
-### Android 的永久存储位置
+### Android 的永久存儲位置
 
-有多个存储持久性 Android 设备上的文件的有效位置。 请参阅[此页][4]为广泛地讨论的各种可能性。
+有多個存儲持久性 Android 設備上的檔的有效位置。 請參閱[此頁][4]為廣泛地討論的各種可能性。
 
  [4]: http://developer.android.com/guide/topics/data/data-storage.html
 
-以前版本的插件会选择在启动时，基于是否该设备声称 SD 卡 （或等效存储分区） 安装临时和永久文件的位置。 如果被挂载 SD 卡，或者如果一个大的内部存储分区是可用 （如 Nexus 的设备上，） 然后持久性文件将存储在该空间的根。 这就意味着所有的科尔多瓦应用可以看到所有可用的文件在卡上。
+以前版本的外掛程式會選擇在啟動時，基於是否該設備聲稱 SD 卡 （或等效存儲分區） 安裝臨時和永久檔的位置。 如果被掛載 SD 卡，或者如果一個大的內部存儲分區是可用 （如 Nexus 的設備上，） 然後持久性檔將存儲在該空間的根。 這就意味著所有的科爾多瓦應用可以看到所有可用的檔在卡上。
 
-如果 SD 卡不是可用的然后以前的版本会将数据存储在下/数据/数据 /<packageid>其中隔离应用程序从彼此，但仍然可能会导致用户之间共享数据。
+如果 SD 卡不是可用的然後以前的版本會將資料存儲在下/資料/資料 /<packageid>其中隔離應用程式從彼此，但仍然可能會導致使用者之間共用資料。
 
-现在可以选择是否要将文件存储在内部文件存储位置，或使用以前的逻辑，在您的应用程序的 config.xml 文件首选项。 若要执行此操作，请将这两行之一添加到 config.xml：
+現在可以選擇是否要將檔存儲在內部檔存儲位置，或使用以前的邏輯，在您的應用程式的 config.xml 檔首選項。 若要執行此操作，請將這兩行之一添加到 config.xml：
 
     <preference name="AndroidPersistentFileLocation" value="Internal" />
     
     <preference name="AndroidPersistentFileLocation" value="Compatibility" />
     
 
-如果这条线，没有文件插件将作为默认值使用"兼容性"。如果首选项标记是存在，并不是这些值之一，应用程序将无法启动。
+如果這條線，沒有檔外掛程式將作為預設值使用"相容性"。如果首選項標記是存在，並不是這些值之一，應用程式將無法啟動。
 
-如果您的应用程序先前已经运送到用户，使用较旧的 (预 1.0) 的这个插件版本和已存储的文件中的持久性的文件系统，然后您应该设置的首选项的"兼容性"。 切换到"内部"的位置就意味着现有用户升级他们的应用程序可能无法访问他们以前存储的文件，他们的设备。
+如果您的應用程式先前已經運送到使用者，使用較舊的 (預 1.0) 的這個外掛程式版本和已存儲的檔中的持久性的檔案系統，然後您應該設置的首選項的"相容性"。 切換到"內部"的位置就意味著現有使用者升級他們的應用程式可能無法訪問他們以前存儲的檔，他們的設備。
 
-如果您的应用程序是新的或以前从未有持久性文件系统中存储的文件，然后通常会建议的"内部"的设置。
+如果您的應用程式是新的或以前從未有持久性檔案系統中存儲的檔，然後通常會建議的"內部"的設置。
 
 ## iOS 的怪癖
 
 *   `FileReader.readAsText(blob, encoding)` 
-    *   `encoding`参数不受支持，和 utf-8 编码总是有效。
+    *   `encoding`參數不受支援，和 utf-8 編碼總是有效。
 
-### iOS 的持久性存储位置
+### iOS 的持久性存儲位置
 
-有两个有效位置来存储持久性的 iOS 设备上的文件： 文件目录和库目录。 以前版本的插件只过持久性文件存储在文件目录中。 这有副作用 — — 使所有的应用程序的文件可见在 iTunes 中，往往是意料之外的特别是为处理大量小文件的应用程序，而不是生产用于出口，是预期的目的的目录的完整的文件。
+有兩個有效位置來存儲持久性的 iOS 設備上的檔： 檔目錄和庫目錄。 以前版本的外掛程式只過持久性檔存儲在檔目錄中。 這有副作用 — — 使所有的應用程式的檔可見在 iTunes 中，往往是意料之外的特別是為處理大量小檔的應用程式，而不是生產用於出口，是預期的目的的目錄的完整的檔。
 
-现在可以选择是否要将文件存储在文件或库目录，与您的应用程序的 config.xml 文件中的偏好。 若要执行此操作，请将这两行之一添加到 config.xml：
+現在可以選擇是否要將檔存儲在檔或庫目錄，與您的應用程式的 config.xml 檔中的偏好。 若要執行此操作，請將這兩行之一添加到 config.xml：
 
     <preference name="iosPersistentFileLocation" value="Library" />
     
     <preference name="iosPersistentFileLocation" value="Compatibility" />
     
 
-如果这条线，没有文件插件将作为默认值使用"兼容性"。如果首选项标记是存在，并不是这些值之一，应用程序将无法启动。
+如果這條線，沒有檔外掛程式將作為預設值使用"相容性"。如果首選項標記是存在，並不是這些值之一，應用程式將無法啟動。
 
-如果您的应用程序先前已经运送到用户，使用较旧的 (预 1.0) 的这个插件版本和已存储的文件中的持久性的文件系统，然后您应该设置的首选项的"兼容性"。 切换到"库"的位置意味着升级他们的应用程序的现有用户将无法访问他们以前存储的文件。
+如果您的應用程式先前已經運送到使用者，使用較舊的 (預 1.0) 的這個外掛程式版本和已存儲的檔中的持久性的檔案系統，然後您應該設置的首選項的"相容性"。 切換到"庫"的位置意味著升級他們的應用程式的現有使用者將無法訪問他們以前存儲的檔。
 
-如果您的应用程序是新的或以前从未有持久性文件系统中存储的文件，然后通常会建议"的库"设置。
+如果您的應用程式是新的或以前從未有持久性檔案系統中存儲的檔，然後通常會建議"的庫"設置。
 
-### 火狐浏览器操作系统的怪癖
+### 火狐瀏覽器作業系統的怪癖
 
-文件系统 API 本机操作系统不支持火狐浏览器，在 indexedDB shim 作为实现的。
+檔案系統 API 本機作業系統不支援火狐瀏覽器，在 indexedDB shim 作為實現的。
 
-*   不会失败时删除非空的目录
-*   不支持用元数据的目录
-*   不支持 `requestAllFileSystems` 和 `resolveLocalFileSystemURI` 的方法
-*   方法 `copyTo` 和 `moveTo` 不支持目录
+*   不會失敗時刪除非空的目錄
+*   不支援用中繼資料的目錄
+*   不支援 `requestAllFileSystems` 和 `resolveLocalFileSystemURI` 的方法
+*   方法 `copyTo` 和 `moveTo` 不支援目錄
 
-## 升级说明
+## 升級說明
 
-在此插件 v1.0.0 `FileEntry` 和 `DirectoryEntry` 结构已经更改，以更符合已发布的规范。
+在此外掛程式 v1.0.0 `FileEntry` 和 `DirectoryEntry` 結構已經更改，以更符合已發佈的規範。
 
-以前 (pre-1.0.0） 版本的插件存储的设备-绝对-文件-位置在 `fullPath` 属性的 `Entry` 对象。这些路径通常看起来就像
+以前 (pre-1.0.0） 版本的外掛程式存儲的設備-絕對-檔-位置在 `fullPath` 屬性的 `Entry` 物件。這些路徑通常看起來就像
 
     /var/mobile/Applications/<application UUID>/Documents/path/to/file  (iOS)
     /storage/emulated/0/path/to/file                                    (Android)
     
 
-这些路径还返回的 `toURL()` 方法的 `Entry` 对象。
+這些路徑還返回的 `toURL()` 方法的 `Entry` 物件。
 
-与 v1.0.0， `fullPath` 属性是对该文件*的 HTML 文件系统根目录的相对*路径。 因此，上述路径会现在两者都由表示 `FileEntry` 对象与 `fullPath` 的
+與 v1.0.0， `fullPath` 屬性是對該檔*的 HTML 檔案系統根目錄的相對*路徑。 因此，上述路徑會現在兩者都由表示 `FileEntry` 物件與 `fullPath` 的
 
     /path/to/file
     
 
-如果您的应用程序与设备-绝对路径，和你以前检索到这些路径通过 `fullPath` 属性的 `Entry` 对象，然后你应该更新您的代码以使用 `entry.toURL()` 相反。
+如果您的應用程式與設備-絕對路徑，和你以前檢索到這些路徑通過 `fullPath` 屬性的 `Entry` 物件，然後你應該更新您的代碼以使用 `entry.toURL()` 相反。
 
-为向后兼容性， `resolveLocalFileSystemURL()` 方法将接受绝对设备的路径，并将返回 `Entry` 对应于它，只要该文件存在的临时或永久性的文件系统内的对象。
+為向後相容性， `resolveLocalFileSystemURL()` 方法將接受絕對設備的路徑，並將返回 `Entry` 對應于它，只要該檔存在的臨時或永久性的檔案系統內的物件。
 
-这特别是一直带有文件传输插件，以前使用过的设备绝对路径的问题 (和仍然可以接受他们)。 它已更新为与文件系统的 Url，所以取代正常工作 `entry.fullPath` 与 `entry.toURL()` 应解决获取该插件来处理文件的设备上的任何问题。
+這特別是一直帶有檔案傳輸外掛程式，以前使用過的設備絕對路徑的問題 (和仍然可以接受他們)。 它已更新為與檔案系統的 Url，所以取代正常工作 `entry.fullPath` 與 `entry.toURL()` 應解決獲取該外掛程式來處理檔的設備上的任何問題。
 
-V1.1.0 的返回值中的 `toURL()` 已更改 （请参见 \[CB-6394\] (https://issues.apache.org/jira/browse/CB-6394)） 返回一个绝对 'file:// URL。 在可能的情况。 为确保 ' cdvfile:'-您可以使用的 URL `toInternalURL()` 现在。 现在，此方法将返回该窗体的文件系统 Url
+V1.1.0 的傳回值中的 `toURL()` 已更改 （請參見 \[CB-6394\] (HTTPs://issues.apache.org/jira/browse/CB-6394)） 返回一個絕對 'file:// URL。 在可能的情況。 為確保 ' cdvfile:'-您可以使用的 URL `toInternalURL()` 現在。 現在，此方法將返回該表單的檔案系統 Url
 
     cdvfile://localhost/persistent/path/to/file
     
 
-它可以用于唯一地标识该文件。
+它可以用於唯一地標識該檔。
 
-## 错误代码和含义的列表
+## 錯誤代碼和含義的清單
 
-错误引发时，将使用以下代码之一。
+錯誤引發時，將使用以下代碼之一。
 
 *   1 = NOT\_FOUND\_ERR
 *   2 = SECURITY_ERR
@@ -171,31 +171,31 @@ V1.1.0 的返回值中的 `toURL()` 已更改 （请参见 \[CB-6394\] (https://
 *   11 = TYPE\_MISMATCH\_ERR
 *   12 = PATH\_EXISTS\_ERR
 
-## 配置的插件 （可选）
+## 配置的外掛程式 （可選）
 
-可用的文件系统的一组可配置的每个平台。IOS 和 android 系统识别 <preference> 在中添加标签 `config.xml` 的名字要安装的文件系统。默认情况下，启用所有文件系统根。
+可用的檔案系統的一組可配置的每個平臺。IOS 和 android 系統識別 <preference> 在中添加標籤 `config.xml` 的名字要安裝的檔案系統。預設情況下，啟用所有檔案系統根。
 
     <preference name="iosExtraFilesystems" value="library,library-nosync,documents,documents-nosync,cache,bundle,root" />
     <preference name="AndroidExtraFilesystems" value="files,files-external,documents,sdcard,cache,cache-external,root" />
     
 
-### Android 系统
+### Android 系統
 
-*   文件: 应用程序的内部文件存储目录
-*   文件外部： 应用程序的外部文件存储目录
-*   sdcard： 全球外部文件存储目录 （如果安装了一个，这是 SD 卡的根目录）。 您必须具有 `android.permission.WRITE_EXTERNAL_STORAGE` 使用此权限。
-*   高速缓存： 应用程序的内部缓存目录
-*   外部高速缓存： 应用程序的外部高速缓存目录
-*   根： 整个设备的文件系统
+*   檔: 應用程式的內部檔存儲目錄
+*   檔外部： 應用程式的外部檔存儲目錄
+*   sdcard： 全球外部檔存儲目錄 （如果安裝了一個，這是 SD 卡的根目錄）。 您必須具有 `android.permission.WRITE_EXTERNAL_STORAGE` 使用此許可權。
+*   快取記憶體： 應用程式的內部緩存目錄
+*   外部快取記憶體： 應用程式的外部快取記憶體目錄
+*   根： 整個設備的檔案系統
 
-Android 还支持名为"文件"，它表示"文件的"文件系统中的子目录"/ 文件 /"特别的文件系统。
+Android 還支援名為"檔"，它表示"檔的"檔案系統中的子目錄"/ 檔 /"特別的檔案系統。
 
 ### iOS
 
-*   图书馆： 应用程序的库目录
-*   文档： 应用程序的文件目录
-*   高速缓存： 应用程序的缓存目录
-*   束： 束应用程序的 ；应用程序本身 （只读） 的磁盘上的位置
-*   根： 整个设备的文件系统
+*   圖書館： 應用程式的庫目錄
+*   文檔： 應用程式的檔目錄
+*   快取記憶體： 應用程式的緩存目錄
+*   束： 束應用程式的 ；應用程式本身 （唯讀） 的磁片上的位置
+*   根： 整個設備的檔案系統
 
-默认情况下，图书馆和文件目录可以同步到 iCloud。 你也可以要求两个附加文件系统、"图书馆-非同步"和"文档-nosync"，代表特别的非同步的目录内的库或文件的文件系统。
+預設情況下，圖書館和檔目錄可以同步到 iCloud。 你也可以要求兩個附加檔案系統、"圖書館-非同步"和"文檔-nosync"，代表特別的非同步的目錄內的庫或檔的檔案系統。

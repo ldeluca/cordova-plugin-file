@@ -35,10 +35,10 @@
 *   アマゾン火 OS
 *   アンドロイド
 *   ブラックベリー 10
+*   Firefox の OS
 *   iOS
 *   Windows Phone 7 と 8 *
 *   Windows 8 *
-*   Firefox の OS
 
 **これらのプラットフォームがサポートしていない `FileReader.readAsArrayBuffer` も `FileWriter.write(blob)` .*
 
